@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine? 💖</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #ffe1e8 50%, #ffffff 100%);
+      text-align: center;
+      color: #a1003d;
+      overflow-x: hidden;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    h1 {
+      font-size: 3.1rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 1.35rem;
+      max-width: 650px;
+      margin: 12px auto;
+    }
+
+    button {
+      padding: 16px 34px;
+      font-size: 1.25rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .yes {
+      background-color: #e6395f;
+      color: white;
+    }
+
+    .no {
+      background-color: #fff0f4;
+      color: #b30059;
+      position: relative;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      max-width: 320px;
+      margin: 40px auto;
+      position: relative;
+    }
+
+    .slideshow img {
+      width: 100%;
+      border-radius: 25px;
+      display: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .slideshow img.active {
+      display: block;
+      animation: fade 1.5s;
+    }
+
+    @keyframes fade {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    footer {
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #8a0046;
+    }
+    /* Cute panda background */
+    .panda {
+      position: fixed;
+      font-size: 42px;
+      opacity: 0.18;
+      z-index: 0;
+      animation: pandaFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes pandaFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Panda decorations -->
+  <div class="panda" style="top:10%; left:5%;">🐼</div>
+  <div class="panda" style="top:30%; right:8%;">🐼</div>
+  <div class="panda" style="bottom:15%; left:10%;">🐼</div>
+  <div class="panda" style="bottom:25%; right:12%;">🐼</div>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <section>
+    <h1>Hey My Love 💕</h1>
+    <p>Hi <strong>Bubu</strong>, I made a little surprise for you</p>
+    <p>I hope you say yes 🤍</p>
+  </section>
+
+  <section>
+    <h1>Will You Be My Valentine? 💌</h1>
+    <button class="yes" onclick="yesClicked()">Yes 💘</button>
+    <button class="no" onmouseover="moveButton()">No 🙈</button>
+  </section>
+
+  <section>
+    <h1>Our Sweet Moments 📸</h1>
+    <div class="slideshow">
+      <img src="photo1.jpg" class="active" />
+      <img src="photo2.jpg" />
+      <img src="photo3.jpg" />
+      <img src="photo4.jpg" />
+      <img src="photo5.jpg" />
+    </div>
+    <p>Every moment with you means so much to me 💞</p>
+  </section>
+
+  <footer>
+    <p>Made with all my love ❤️</p>
+  </footer>
+
+  <script>
+    function yesClicked() {
+      alert('Yayyy! 💖 You just made me the happiest person!');
+    }
+
+    function moveButton() {
+      const button = document.querySelector('.no');
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      button.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // Slideshow
+    let slides = document.querySelectorAll('.slideshow img');
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 2500);
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+  </script>
+
+</body>
+</html>
